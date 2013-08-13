@@ -897,7 +897,7 @@ int fec_init(struct eth_device *dev, bd_t *bd)
 	if (info->phy_addr < 0 || info->phy_addr > 0x1F)
 		info->phy_addr = mxc_fec_mii_discover_phy(dev);
 #endif
-#if defined(CONFIG_MX6Q) || defined(CONFIG_MX6DL)
+#if defined(CONFIG_RGMII)
 	mx6_rgmii_rework(dev->name, info->phy_addr);
 #endif
 	mxc_get_phy_ouid(dev->name, info->phy_addr);
@@ -931,10 +931,16 @@ int fec_init(struct eth_device *dev, bd_t *bd)
 	/* Set maximum receive buffer size. */
 	fecp->emrbr = PKT_MAXBLR_SIZE;
 
-#if defined(CONFIG_MX6Q) || defined(CONFIG_MX6DL)
+#if defined(CONFIG_RGMII)
 	fecp->rcr &= ~(0x100);
 	fecp->rcr |= 0x44;
+#else
+#if defined(CONFIG_ICORE) /* NOT FOR RQS where RGMII is configured */
+	fecp->rcr |= 0x104;
+
+#endif 
 #endif
+
 	/*
 	 * Setup Buffers and Buffer Desriptors
 	 */

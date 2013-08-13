@@ -3338,6 +3338,22 @@ mx6q_sabresd_iram_config	: unconfig
 		}
 	@$(MKCONFIG) $(@:_config=) arm arm_cortexa8 mx6q_sabresd freescale mx6
 
+mx6s_icore_config			\
+mx6s_icore512_config			\
+mx6d_icore_config			\
+mx6q_icore_config			\
+mx6q_icore_android_config 		\
+mx6q_icore_mfg_config   : unconfig
+	@$(MKCONFIG) $(@:_config=) arm arm_cortexa8 mx6_icore freescale mx6
+
+mx6s_icore_rqs_config			\
+mx6s_icore_rqs512_config			\
+mx6d_icore_rqs_config			\
+mx6q_icore_rqs_config			\
+mx6q_icore_rqs_android_config 		\
+mx6q_icore_rqs_mfg_config   : unconfig
+	@$(MKCONFIG) $(@:_config=) arm arm_cortexa8 mx6_icore_rqs freescale mx6
+
 mx6q_sabrelite_config			\
 mx6q_sabrelite_android_config 		\
 mx6q_sabrelite_mfg_config   : unconfig

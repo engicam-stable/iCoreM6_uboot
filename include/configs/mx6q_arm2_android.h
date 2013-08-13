@@ -66,17 +66,3 @@
 #define CONFIG_ANDROID_RECOVERY_CMD_FILE "/recovery/command"
 #define CONFIG_INITRD_TAG
 
-#undef CONFIG_LOADADDR
-#undef CONFIG_RD_LOADADDR
-#undef CONFIG_EXTRA_ENV_SETTINGS
-
-#define CONFIG_LOADADDR		0x10800000	/* loadaddr env var */
-#define CONFIG_RD_LOADADDR      0x11000000
-
-#define CONFIG_INITRD_TAG
-
-#define	CONFIG_EXTRA_ENV_SETTINGS					\
-		"netdev=eth0\0"						\
-		"ethprime=FEC0\0"					\
-		"bootcmd=booti mmc4\0"
-#endif				/* __CONFIG_H */

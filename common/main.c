@@ -44,6 +44,10 @@
 DECLARE_GLOBAL_DATA_PTR;
 #endif
 
+
+#define SHOW_ENGICAM_VERSION     "Version: Engicam U-Boot 1.07\n"
+
+
 /*
  * Board-specific Platform code can reimplement show_boot_progress () if needed
  */
@@ -59,6 +63,9 @@ extern int do_bootd (cmd_tbl_t *cmdtp, int flag, int argc, char *argv[]);
 #if defined(CONFIG_UPDATE_TFTP)
 void update_tftp (void);
 #endif /* CONFIG_UPDATE_TFTP */
+
+void version_show(void);
+ 
 
 #define MAX_DELAY_STOP_STR 32
 
@@ -293,6 +300,9 @@ void main_loop (void)
 	char *bcs;
 	char bcs_set[16];
 #endif /* CONFIG_BOOTCOUNT_LIMIT */
+
+	version_show ();
+	 
 
 #if defined(CONFIG_VFD) && defined(VFD_TEST_LOGO)
 	ulong bmp = 0;		/* default bitmap */
@@ -1268,6 +1278,18 @@ static void process_macros (const char *input, char *output)
 		strlen (output_start), output_start);
 #endif
 }
+
+
+//! This function show on u-boot consolle on start-up the version
+//  For setting the version open file mx25_3stack.
+void version_show(void)
+{
+  printf ("\n");
+  printf (SHOW_ENGICAM_VERSION);
+  printf (SHOW_ENGICAM_NOTE);
+  printf ("\n");
+}
+
 
 /****************************************************************************
  * returns:
