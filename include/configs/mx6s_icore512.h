@@ -36,6 +36,7 @@
 #define CONFIG_MX6_CLK32	   32768
 #define CONFIG_ICORE
 #define CONFIG_ICORE_SOLO
+#define SHOW_ENGICAM_NOTE        "Note:    iCore6S_512 default U-Boot\n" 
 
 #define CONFIG_SKIP_RELOCATE_UBOOT
 
