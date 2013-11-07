@@ -203,10 +203,10 @@ static void setup_uart(void)
 	mxc_iomux_v3_setup_pad(MX6Q_PAD_KEY_ROW0__UART4_RXD);
 #elif defined CONFIG_MX6DL
 	/* UART1 TXD */
-	mxc_iomux_v3_setup_pad(MX6DL_PAD_SD3_DAT6__UART1_TXD);
+//MP:TBD	mxc_iomux_v3_setup_pad(MX6DL_PAD_SD3_DAT6__UART1_TXD);
 
 	/* UART1 RXD */
-	mxc_iomux_v3_setup_pad(MX6DL_PAD_SD3_DAT7__UART1_RXD);
+//MP:TBD	mxc_iomux_v3_setup_pad(MX6DL_PAD_SD3_DAT7__UART1_RXD);
 
 	/* UART2 TXD */
 	mxc_iomux_v3_setup_pad(MX6DL_PAD_EIM_D26__UART2_TXD);
@@ -529,6 +529,10 @@ iomux_v3_cfg_t mx6_usdhc3_pads[] = {
 	MX6DL_PAD_SD3_DAT1__USDHC3_DAT1,
 	MX6DL_PAD_SD3_DAT2__USDHC3_DAT2,
 	MX6DL_PAD_SD3_DAT3__USDHC3_DAT3,
+	MX6DL_PAD_SD3_DAT4__USDHC3_DAT4,
+	MX6DL_PAD_SD3_DAT5__USDHC3_DAT5,
+	MX6DL_PAD_SD3_DAT6__USDHC3_DAT6,
+	MX6DL_PAD_SD3_DAT7__USDHC3_DAT7,
 #endif
 };
 
@@ -552,6 +556,11 @@ iomux_v3_cfg_t mx6_usdhc4_pads[] = {
 	MX6DL_PAD_SD4_DAT1__USDHC4_DAT1,
 	MX6DL_PAD_SD4_DAT2__USDHC4_DAT2,
 	MX6DL_PAD_SD4_DAT3__USDHC4_DAT3,
+	MX6DL_PAD_SD4_DAT4__USDHC4_DAT4,
+	MX6DL_PAD_SD4_DAT5__USDHC4_DAT5,
+	MX6DL_PAD_SD4_DAT6__USDHC4_DAT6,
+	MX6DL_PAD_SD4_DAT7__USDHC4_DAT7,
+	MX6DL_PAD_NANDF_ALE__USDHC4_RST,
 #endif
 };
 
@@ -664,7 +673,11 @@ int check_recovery_cmd_file(void)
 	recovery_mode = check_and_clean_recovery_flag();
 
 	/* Check Recovery Combo Button press or not. */
+#if defined CONFIG_MX6Q
 	mxc_iomux_v3_setup_pad(MX6Q_PAD_GPIO_19__GPIO_4_5);
+#elif defined CONFIG_MX6DL
+	mxc_iomux_v3_setup_pad(MX6DL_PAD_GPIO_19__GPIO_4_5);
+#endif
 	reg = readl(GPIO4_BASE_ADDR + GPIO_GDIR);
 	reg &= ~(1<<5);
 	writel(reg, GPIO4_BASE_ADDR + GPIO_GDIR);
@@ -685,6 +698,7 @@ int board_late_init(void)
 
 
 iomux_v3_cfg_t enet_pads[] = {
+#if defined CONFIG_MX6Q
 	MX6Q_PAD_ENET_MDIO__ENET_MDIO,
 	MX6Q_PAD_ENET_MDC__ENET_MDC,
 	MX6Q_PAD_RGMII_TXC__ENET_RGMII_TXC,
@@ -708,15 +722,49 @@ iomux_v3_cfg_t enet_pads[] = {
 	MX6Q_PAD_GPIO_0__CCM_CLKO,
 	MX6Q_PAD_GPIO_3__CCM_CLKO2,
 	MX6Q_PAD_ENET_REF_CLK__ENET_TX_CLK,
+#elif defined CONFIG_MX6DL
+	MX6DL_PAD_ENET_MDIO__ENET_MDIO,
+	MX6DL_PAD_ENET_MDC__ENET_MDC,
+	MX6DL_PAD_RGMII_TXC__ENET_RGMII_TXC,
+	MX6DL_PAD_RGMII_TD0__ENET_RGMII_TD0,
+	MX6DL_PAD_RGMII_TD1__ENET_RGMII_TD1,
+	MX6DL_PAD_RGMII_TD2__ENET_RGMII_TD2,
+	MX6DL_PAD_RGMII_TD3__ENET_RGMII_TD3,
+	MX6DL_PAD_RGMII_TX_CTL__ENET_RGMII_TX_CTL,
+	/* pin 35 - 1 (PHY_AD2) on reset */
+	MX6DL_PAD_RGMII_RXC__GPIO_6_30,
+	/* pin 32 - 1 - (MODE0) all */
+	MX6DL_PAD_RGMII_RD0__GPIO_6_25,
+	/* pin 31 - 1 - (MODE1) all */
+	MX6DL_PAD_RGMII_RD1__GPIO_6_27,
+	/* pin 28 - 1 - (MODE2) all */
+	MX6DL_PAD_RGMII_RD2__GPIO_6_28,
+	/* pin 27 - 1 - (MODE3) all */
+	MX6DL_PAD_RGMII_RD3__GPIO_6_29,
+	/* pin 33 - 1 - (CLK125_EN) 125Mhz clockout enabled */
+	MX6DL_PAD_RGMII_RX_CTL__GPIO_6_24,
+	MX6DL_PAD_GPIO_0__CCM_CLKO,
+	MX6DL_PAD_GPIO_3__CCM_CLKO2,
+	MX6DL_PAD_ENET_REF_CLK__ENET_TX_CLK,
+#endif
 };
 
 iomux_v3_cfg_t enet_pads_final[] = {
+#if defined CONFIG_MX6Q
 	MX6Q_PAD_RGMII_RXC__ENET_RGMII_RXC,
 	MX6Q_PAD_RGMII_RD0__ENET_RGMII_RD0,
 	MX6Q_PAD_RGMII_RD1__ENET_RGMII_RD1,
 	MX6Q_PAD_RGMII_RD2__ENET_RGMII_RD2,
 	MX6Q_PAD_RGMII_RD3__ENET_RGMII_RD3,
 	MX6Q_PAD_RGMII_RX_CTL__ENET_RGMII_RX_CTL,
+#elif defined CONFIG_MX6DL
+	MX6DL_PAD_RGMII_RXC__ENET_RGMII_RXC,
+	MX6DL_PAD_RGMII_RD0__ENET_RGMII_RD0,
+	MX6DL_PAD_RGMII_RD1__ENET_RGMII_RD1,
+	MX6DL_PAD_RGMII_RD2__ENET_RGMII_RD2,
+	MX6DL_PAD_RGMII_RD3__ENET_RGMII_RD3,
+	MX6DL_PAD_RGMII_RX_CTL__ENET_RGMII_RX_CTL,
+#endif
 };
 
 
@@ -764,7 +812,7 @@ int mx6_rgmii_rework(char *devname, int phy_addr)
 	phy_write(devname, phy_addr, 0x0c, 0xf0f0);
 	phy_write(devname, phy_addr, 0x0b, 0x104);
 #endif
-     
+#if defined CONFIG_MX6Q    
        //write register 6 addr 2 TXD[0:3] skew
 	phy_write(devname, phy_addr, 0x0d, 0x0002);
 	phy_write(devname, phy_addr, 0x0e, 0x0006);
@@ -788,7 +836,32 @@ int mx6_rgmii_rework(char *devname, int phy_addr)
 	phy_write(devname, phy_addr, 0x0e, 0x0008);
 	phy_write(devname, phy_addr, 0x0d, 0x4002);
 	phy_write(devname, phy_addr, 0x0e, 0x01E7);
+#elif defined CONFIG_MX6DL
+      //write register 6 addr 2 TXD[0:3] skew
+	phy_write(devname, phy_addr, 0x0d, 0x0002);
+	phy_write(devname, phy_addr, 0x0e, 0x0006);
+	phy_write(devname, phy_addr, 0x0d, 0x4002);
+	phy_write(devname, phy_addr, 0x0e, 0x3333);
 
+       //write register 5 addr 2 RXD[0:3] skew
+	phy_write(devname, phy_addr, 0x0d, 0x0002);
+	phy_write(devname, phy_addr, 0x0e, 0x0005);
+	phy_write(devname, phy_addr, 0x0d, 0x4002);
+	phy_write(devname, phy_addr, 0x0e, 0x3333);
+
+       //write register 4 addr 2 RX_DV TX_EN skew
+	phy_write(devname, phy_addr, 0x0d, 0x0002);
+	phy_write(devname, phy_addr, 0x0e, 0x0004);
+	phy_write(devname, phy_addr, 0x0d, 0x4002);
+	phy_write(devname, phy_addr, 0x0e, 0x0037);
+
+       //write register 8 addr 2 RX_DV TX_EN skew
+	phy_write(devname, phy_addr, 0x0d, 0x0002);
+	phy_write(devname, phy_addr, 0x0e, 0x0008);
+	phy_write(devname, phy_addr, 0x0d, 0x4002);
+	phy_write(devname, phy_addr, 0x0e, 0x01E7);
+
+#endif
 #if 0 
         //read register 6 addr 2 TXD[0:3] skew
 	phy_write(devname, phy_addr, 0x0d, 0x0002);
@@ -808,9 +881,15 @@ int mx6_rgmii_rework(char *devname, int phy_addr)
 
 void enet_board_init(void)
 {
+#if defined CONFIG_MX6Q
 	iomux_v3_cfg_t enet_reset =
 	    (MX6Q_PAD_ENET_RX_ER__GPIO_1_24 &
 	     ~MUX_PAD_CTRL_MASK) | MUX_PAD_CTRL(0x48);
+#elif defined CONFIG_MX6DL
+	iomux_v3_cfg_t enet_reset =
+	    (MX6DL_PAD_ENET_RX_ER__GPIO_1_24 &
+	     ~MUX_PAD_CTRL_MASK) | MUX_PAD_CTRL(0x48);
+#endif
 
 	/* phy reset: gpio1-24 */
 	set_gpio_output_val(GPIO1_BASE_ADDR, (1 << 24), 0);
@@ -838,6 +917,8 @@ int checkboard(void)
 	printf("Board: MX6Q-RQS-i.Core:[ ");
 #elif defined CONFIG_ICORE_DUAL
 	printf("Board: MX6D-RQS-i.Core:[ ");
+#elif defined CONFIG_ICORE_DUALLIGHT
+	printf("Board: MX6DL-RQS-i.Core:[ ");
 #elif defined CONFIG_ICORE_SOLO
 	printf("Board: MX6S-RQS-i.Core:[ ");
 #endif
@@ -900,10 +981,15 @@ void udc_pins_setting(void)
 {
 #define GPIO_3_22_BIT_MASK (1<<22)
 	u32 reg;
+#if defined CONFIG_MX6Q
 	mxc_iomux_v3_setup_pad(MX6Q_PAD_GPIO_1__USBOTG_ID);
 	/* USB_OTG_PWR */
 	mxc_iomux_v3_setup_pad(MX6Q_PAD_EIM_D22__GPIO_3_22);
+#elif defined CONFIG_MX6DL
+	mxc_iomux_v3_setup_pad(MX6DL_PAD_GPIO_1__USBOTG_ID);
 
+	mxc_iomux_v3_setup_pad(MX6DL_PAD_EIM_D22__GPIO_3_22);
+#endif
 	reg = readl(GPIO3_BASE_ADDR + GPIO_GDIR);
 	/* set gpio_3_22 as output */
 	reg |= GPIO_3_22_BIT_MASK;

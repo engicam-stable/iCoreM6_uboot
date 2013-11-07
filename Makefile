@@ -3347,7 +3347,8 @@ mx6q_icore_mfg_config   : unconfig
 	@$(MKCONFIG) $(@:_config=) arm arm_cortexa8 mx6_icore freescale mx6
 
 mx6s_icore_rqs_config			\
-mx6s_icore_rqs512_config			\
+mx6s_icore_rqs512_config		\
+mx6dl_icore_rqs_config			\
 mx6d_icore_rqs_config			\
 mx6q_icore_rqs_config			\
 mx6q_icore_rqs_android_config 		\

@@ -33,7 +33,7 @@
 #define CONFIG_FLASH_HEADER_OFFSET 0x400
 #define CONFIG_MX6_CLK32	   32768
 #define CONFIG_ICORE
-#define CONFIG_ICORE_SOLO
+#define CONFIG_ICORE_DUALLIGHT
 #define CONFIG_ICORE_RQS
 #define SHOW_ENGICAM_NOTE        "Note:    iCore6S-RQS default U-Boot\n" 
 
@@ -155,7 +155,7 @@
  * Miscellaneous configurable options
  */
 #define CONFIG_SYS_LONGHELP		/* undef to save memory */
-#define CONFIG_SYS_PROMPT		"MX6S-RQS i.Core U-Boot > "
+#define CONFIG_SYS_PROMPT		"MX6DL-RQS i.Core U-Boot > "
 #define CONFIG_AUTO_COMPLETE
 #define CONFIG_SYS_CBSIZE		1024	/* Console I/O Buffer Size */
 /* Print Buffer Size */
@@ -314,7 +314,7 @@
  */
 #define CONFIG_NR_DRAM_BANKS	1
 #define PHYS_SDRAM_1		CSD0_DDR_BASE_ADDR
-#define PHYS_SDRAM_1_SIZE	(256 * 1024 * 1024)
+#define PHYS_SDRAM_1_SIZE	(512 * 1024 * 1024)
 #define iomem_valid_addr(addr, size) \
 	(addr >= PHYS_SDRAM_1 && addr <= (PHYS_SDRAM_1 + PHYS_SDRAM_1_SIZE))
 
