@@ -823,7 +823,7 @@ int mx6_rgmii_rework(char *devname, int phy_addr)
 	phy_write(devname, phy_addr, 0x0d, 0x0002);
 	phy_write(devname, phy_addr, 0x0e, 0x0005);
 	phy_write(devname, phy_addr, 0x0d, 0x4002);
-	phy_write(devname, phy_addr, 0x0e, 0x3333);
+	phy_write(devname, phy_addr, 0x0e, 0x7777);
 
        //write register 4 addr 2 RX_DV TX_EN skew
 	phy_write(devname, phy_addr, 0x0d, 0x0002);
@@ -841,13 +841,13 @@ int mx6_rgmii_rework(char *devname, int phy_addr)
 	phy_write(devname, phy_addr, 0x0d, 0x0002);
 	phy_write(devname, phy_addr, 0x0e, 0x0006);
 	phy_write(devname, phy_addr, 0x0d, 0x4002);
-	phy_write(devname, phy_addr, 0x0e, 0x3333);
+	phy_write(devname, phy_addr, 0x0e, 0x1111);
 
        //write register 5 addr 2 RXD[0:3] skew
 	phy_write(devname, phy_addr, 0x0d, 0x0002);
 	phy_write(devname, phy_addr, 0x0e, 0x0005);
 	phy_write(devname, phy_addr, 0x0d, 0x4002);
-	phy_write(devname, phy_addr, 0x0e, 0x3333);
+	phy_write(devname, phy_addr, 0x0e, 0x2222);
 
        //write register 4 addr 2 RX_DV TX_EN skew
 	phy_write(devname, phy_addr, 0x0d, 0x0002);

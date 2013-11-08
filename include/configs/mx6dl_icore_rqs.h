@@ -35,7 +35,7 @@
 #define CONFIG_ICORE
 #define CONFIG_ICORE_DUALLIGHT
 #define CONFIG_ICORE_RQS
-#define SHOW_ENGICAM_NOTE        "Note:    iCore6S-RQS default U-Boot\n" 
+#define SHOW_ENGICAM_NOTE        "Note:    iCoreM6DL-RQS default U-Boot\n" 
 
 #define CONFIG_SKIP_RELOCATE_UBOOT
 
