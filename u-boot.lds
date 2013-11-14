@@ -7,9 +7,9 @@ SECTIONS
  . = ALIGN(4);
  .text :
  {
-   board/freescale/mx6_icore_rqs/flash_header.o (.text.flasheader)
+   board/freescale/mx6_icore/flash_header.o (.text.flasheader)
    cpu/arm_cortexa8/start.o
-   board/freescale/mx6_icore_rqs/libmx6_icore_rqs.a (.text)
+   board/freescale/mx6_icore/libmx6_icore.a (.text)
    lib_arm/libarm.a (.text)
    net/libnet.a (.text)
    drivers/mtd/libmtd.a (.text)
