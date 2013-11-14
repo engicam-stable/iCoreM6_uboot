@@ -36,6 +36,7 @@
 #define CONFIG_ICORE_QUAD
 #define SHOW_ENGICAM_NOTE        "Note:    iCore6Q default U-Boot\n" 
 
+#define CONFIG_MXC_GPIO
 #define CONFIG_SKIP_RELOCATE_UBOOT
 
 #define CONFIG_ARCH_CPU_INIT

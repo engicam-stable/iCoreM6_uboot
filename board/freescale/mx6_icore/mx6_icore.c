@@ -27,6 +27,9 @@
 #include <asm/arch/mx6dl_pins.h>
 #include <asm/arch/iomux-v3.h>
 #include <asm/errno.h>
+#include <asm/arch-mx6/gpio.h>
+#include <asm/gpio.h>
+
 #include <miiphy.h>
 #if CONFIG_I2C_MXC
 #include <i2c.h>
@@ -65,6 +68,8 @@
 #endif
 
 DECLARE_GLOBAL_DATA_PTR;
+
+#define ICOREM6_BACKLIGHTOFF
 
 static u32 system_rev;
 static enum boot_device boot_dev;
@@ -614,6 +619,19 @@ int board_init(void)
 
 	/* address of boot parameters */
 	gd->bd->bi_boot_params = PHYS_SDRAM_1 + 0x100;
+
+	/* Setup backlight on power down */	
+#ifdef ICOREM6_BACKLIGHTOFF
+	#if defined CONFIG_MX6Q
+	mxc_iomux_v3_setup_pad(MX6Q_PAD_SD4_DAT1__GPIO_2_9);
+	#elif defined CONFIG_MX6DL
+	mxc_iomux_v3_setup_pad(MX6DL_PAD_SD4_DAT1__GPIO_2_9);
+	#endif
+
+	#define GPIO_BACKLIGHT_ICORE  IMX_GPIO_NR(2, 9)
+	gpio_direction_output(GPIO_BACKLIGHT_ICORE, 1);
+	gpio_set_value(GPIO_BACKLIGHT_ICORE, 0);
+#endif
 
 	setup_uart();
 
