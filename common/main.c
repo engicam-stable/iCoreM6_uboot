@@ -45,7 +45,7 @@ DECLARE_GLOBAL_DATA_PTR;
 #endif
 
 
-#define SHOW_ENGICAM_VERSION     "Version: Engicam U-Boot 1.08\n"
+#define SHOW_ENGICAM_VERSION     "Version: Engicam U-Boot 1.09\n"
 
 
 /*

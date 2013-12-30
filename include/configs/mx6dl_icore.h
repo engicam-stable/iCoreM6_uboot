@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2012 Engicam srl
  *
- * Configuration settings for the Engicam i.CoreM6 Starter kit.
+ * Configuration settings for the Engicam i.CoreM6.
  *
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License as
@@ -27,14 +27,14 @@
  /* High Level Configuration Options */
 #define CONFIG_ARMV7	/* This is armv7 Cortex-A9 CPU core */
 #define CONFIG_MXC
-#define CONFIG_MX6Q
-#define CONFIG_MX6Q_SABRELITE
+#define CONFIG_MX6DL
+#define CONFIG_MX6Q_SABREAUTO
 #define CONFIG_FLASH_HEADER
 #define CONFIG_FLASH_HEADER_OFFSET 0x400
 #define CONFIG_MX6_CLK32	   32768
 #define CONFIG_ICORE
-#define CONFIG_ICORE_DUAL
-#define SHOW_ENGICAM_NOTE        "Note:    iCore6D default U-Boot\n" 
+#define CONFIG_ICORE_DUALLIGHT
+#define SHOW_ENGICAM_NOTE        "Note:    iCoreM6DL default U-Boot\n" 
 
 #define CONFIG_MXC_GPIO
 #define CONFIG_SKIP_RELOCATE_UBOOT
@@ -107,7 +107,7 @@
 #define CONFIG_CMD_CLOCK
 #define CONFIG_REF_CLK_FREQ CONFIG_MX6_HCLK_FREQ
 
-#define CONFIG_CMD_SATA
+#undef CONFIG_CMD_SATA
 #undef CONFIG_CMD_IMLS
 
 #define CONFIG_CMD_IMX_DOWNLOAD_MODE
@@ -155,7 +155,7 @@
  * Miscellaneous configurable options
  */
 #define CONFIG_SYS_LONGHELP		/* undef to save memory */
-#define CONFIG_SYS_PROMPT		"MX6D i.Core U-Boot > "
+#define CONFIG_SYS_PROMPT		"MX6DL i.Core U-Boot > "
 #define CONFIG_AUTO_COMPLETE
 #define CONFIG_SYS_CBSIZE		1024	/* Console I/O Buffer Size */
 /* Print Buffer Size */

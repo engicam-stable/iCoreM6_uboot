@@ -3340,6 +3340,7 @@ mx6q_sabresd_iram_config	: unconfig
 
 mx6s_icore_config			\
 mx6s_icore512_config			\
+mx6dl_icore_config			\
 mx6d_icore_config			\
 mx6q_icore_config			\
 mx6q_icore_android_config 		\
