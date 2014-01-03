@@ -23,6 +23,7 @@
 #define __CONFIG_H
 
 #include <asm/arch/mx6.h>
+#include "common_parameter.h"
 
  /* High Level Configuration Options */
 #define CONFIG_ARMV7	/* This is armv7 Cortex-A9 CPU core */
@@ -121,35 +122,10 @@
 #define CONFIG_LOADADDR		0x10800000	/* loadaddr env var */
 #define CONFIG_RD_LOADADDR      0x11000000
 
-#define	CONFIG_EXTRA_ENV_SETTINGS \
-		"netdev=eth0\0" \
-		"ethprime=FEC0\0" \
-		"ethaddr=00:01:02:03:04:05\0" \
-		"uboot=u-boot.bin\0" \
-		"kernel=uImage\0" \
-		"bootargs_base=setenv bootargs console=ttymxc3,115200 arm_freq=800\0" \
-		"bootargs_nfs=setenv bootargs ${bootargs} root=/dev/nfs " \
-			"ip=dhcp nfsroot=${serverip}:${nfsroot},v3,tcp " \
-			"video=mxcfb0:dev=ldb,LDB-XGA,if=RGB666\0" \
-		"bootcmd_net=dhcp; run bootargs_base bootargs_nfs;bootm\0" \
-		"bootargs_mmc=setenv bootargs ${bootargs} " \
-			"root=/dev/mmcblk0p1 rootwait rw " \
-			"video=mxcfb0:dev=lcd,Amp-WD\0" \
-		"bootcmd_mmc=run bootargs_base bootargs_mmc;" \
-			"mmc read ${loadaddr} 0x800 0x2000;bootm\0" \
-		"bootargs_ubi=noinitrd console=ttymxc3,115200 "		\
-		"ubi.mtd=2 root=ubi0:rootfs rootfstype=ubifs rootwait rw "\
-		"\0"\
-		"bootargs=noinitrd console=ttymxc3,115200 arm_freq=800 "		\
-		"ubi.mtd=2 root=ubi0:rootfs rootfstype=ubifs rootwait rw "\
-		"\0"\
-		"bootcmd=nand read ${loadaddr} 0x400000 0x700000;bootm\0" \
-		"bootfile=_BOOT_FILE_PATH_IN_TFTP_\0" \
-		"nfsroot=_ROOTFS_PATH_IN_NFS_\0"
-
-/* MM per MMC sostituire
-		"bootcmd=run bootcmd_mmc\0" \
-*/
+/*
+ *  Default env settig are setted in common_parameter.h
+ */
+#define	CONFIG_EXTRA_ENV_SETTINGS 		EXTRA_ENV_SETTINGS_ICORE
 
 #define CONFIG_ARP_TIMEOUT	200UL
 
@@ -192,12 +168,6 @@
 #define CONFIG_CMD_MII
 #define CONFIG_CMD_DHCP
 #define CONFIG_CMD_PING
-#define CONFIG_IPADDR			192.168.2.105
-
-/*The IP ADDRESS of SERVERIP*/
-#define CONFIG_SERVERIP			_SERVER_IP_ADDR_
-
-#define CONFIG_NETMASK			255.255.255.0
 
 /*
  * OCOTP Configs
