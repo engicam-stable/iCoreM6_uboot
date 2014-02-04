@@ -47,7 +47,7 @@
 	 */
 	#define	EXTRA_ENV_SETTINGS_RQS 			\
 		COMMON_PARAMETER 			\	
-		"bootcmd_emmc=run bootargs; run bootargs_mmc; mmc dev 1; mmc read ${loadaddr} 0x800 0x2000;bootm\0"					\
+		"bootcmd_emmc=run bootargs; run bootargs_emmc; mmc dev 1; mmc read ${loadaddr} 0x800 0x2000;bootm\0"					\
 		"bootargs_emmc=setenv bootargs ${bootargs} root=/dev/mmcblk0p1 rootwait rw\0" 								\
 		"video_type=mxcfb0:dev=ldb,LDB-XGA,if=RGB666 video=mxcfb0:dev=hdmi,1920x1080M@60,if=RGB24\0"						\
 		"bootcmd=run bootcmd_emmc\0" 		\
